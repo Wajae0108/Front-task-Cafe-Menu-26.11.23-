@@ -1,0 +1,25 @@
+const books = [
+  { id: 1, emoji: '📗', title: '아몬드', author: '손원평', genre: 'novel',
+    pages: 264, desc: '감정을 느끼지 못하는 소년 윤재의 성장 이야기',
+    rating: 5, isRead: true, isBest: true },
+  { id: 2, emoji: '📙', title: '불편한 편의점', author: '김호연', genre: 'novel',
+    pages: 268, desc: '서울역 노숙인이 편의점 야간 알바를 하며 벌어지는 이야기',
+    rating: 4, isRead: true, isBest: false },
+  { id: 3, emoji: '📕', title: '달러구트 꿈 백화점', author: '이미예', genre: 'novel',
+    pages: 300, desc: '잠들어야만 입장할 수 있는 꿈을 파는 백화점 이야기',
+    rating: 3, isRead: false, isBest: false },
+  { id: 4, emoji: '📒', title: '어린이라는 세계', author: '김소영', genre: 'essay',
+    pages: 236, desc: '어린이와 함께한 시간을 따뜻하게 기록한 에세이',
+    rating: 5, isRead: true, isBest: true },
+  { id: 5, title: '클린 코드', author: '로버트 C. 마틴', genre: 'it',
+    pages: 584, desc: '읽기 좋은 코드를 작성하는 원칙과 방법',
+    rating: 4, isRead: false, isBest: false },
+  { id: 6, emoji: '📓', title: '모던 자바스크립트 Deep Dive', author: '이웅모', genre: 'it',
+    pages: 968, desc: '자바스크립트의 기본 개념과 동작 원리를 깊이 있게 설명하는 책',
+    rating: 5, isRead: false, isBest: true },
+  { id: 7, title: '혼자 공부하는 파이썬', author: '윤인성', genre: 'it',
+    pages: 412, desc: '혼자서도 차근차근 배우는 파이썬 입문서',
+    rating: 3, isRead: true, isBest: false },
+];
+
+export default books;
