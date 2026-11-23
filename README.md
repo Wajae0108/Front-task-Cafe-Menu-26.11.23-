@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 나의 책장 · 과제 1
 
-## Getting Started
+React 12주차 「이벤트와 State」의 과제 요구사항을 기존 책장 프로젝트에 적용했습니다.
 
-First, run the development server:
+## 실행
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+브라우저에서 http://localhost:3000 을 엽니다.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 적용 내용
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| 요구사항 | 구현 |
+| --- | --- |
+| W1-1 | `app/page.js`에서 책 데이터를 Props로 전달하고, `'use client'`를 선언한 `components/BookShelf.js`에서 목록 렌더링 |
+| W1-2 | `value`, `onChange`, `useState`를 연결한 제목 검색과 `filter`, `includes` 사용 |
+| W1-3 | 전체 / 소설 / 에세이 / IT / 시 버튼과 선택 상태 강조 |
+| W1-4 | 카드의 읽음 버튼을 누르면 다 읽음 / 읽는 중 상태 전환 |
+| W1-5 | 제목과 장르 조건을 함께 적용한 결과 권수 및 0권 안내 |
 
-## Learn More
+`BookShelf`에서 `keyword`, `genre`, `bookList`를 state로 관리합니다. 결과 목록과 통계는 현재 state로부터 계산합니다. 책 상태는 `map`과 객체 복사를 사용해 기존 배열을 직접 수정하지 않고 변경합니다.
 
-To learn more about Next.js, take a look at the following resources:
+교안에서는 카드 내부의 `useState(isRead)`도 허용합니다. 이 구현은 책장으로 상태를 끌어올려 카드 버튼을 누르면 전체 독서 통계도 갱신되며, 검색이나 장르 변경 이후에도 상태를 유지합니다. 새로고침하면 원래 데이터로 돌아갑니다. 기존 도서 데이터는 유지했으며 시 장르는 등록 도서가 없어 빈 결과 안내를 확인할 수 있습니다.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 확인 방법
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. 초기 화면의 전체 7권, 다 읽은 책 4권, 진행률 57%를 확인합니다.
+2. 제목에 `학습`을 입력하면 「야생 학습」 1권이 표시됩니다.
+3. 검색어를 유지한 채 소설을 선택하면 0권, IT를 선택하면 1권이 표시됩니다.
+4. 필터 초기화 후 시를 선택하면 빈 결과 안내가 표시됩니다.
+5. 「야생 학습」의 읽음 버튼을 누르면 다 읽은 책 5권, 진행률 71%가 됩니다. 탭을 바꿨다가 돌아와도 읽음 상태가 유지됩니다.
+6. 같은 버튼을 다시 누르면 읽는 중으로 돌아옵니다.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+```
