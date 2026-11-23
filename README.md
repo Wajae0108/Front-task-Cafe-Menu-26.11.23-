@@ -1,39 +1,69 @@
-# 나의 책장 · 과제 1
+# Cafe Menu
 
-React 12주차 「이벤트와 State」의 과제 요구사항을 기존 책장 프로젝트에 적용했습니다.
+Next.js(App Router) 기반 카페 메뉴 프로젝트입니다.
 
-## 실행
+## 요구 사항
+
+- [Node.js](https://nodejs.org/) 20.9 이상 (LTS 권장)
+- npm (Node.js 설치 시 함께 설치됨)
+- Git
+
+## 클론 후 실행 방법
 
 ```bash
+# 1. 저장소 클론
+git clone https://github.com/duree3444-beep/cafe-menu.git
+
+# 2. 프로젝트 폴더로 이동
+cd cafe-menu
+
+# 3. 의존성 설치
 npm install
+
+# 4. 개발 서버 실행
 npm run dev
 ```
 
-브라우저에서 http://localhost:3000 을 엽니다.
+실행 후 브라우저에서 [http://localhost:3000](http://localhost:3000) 으로 접속하세요.
 
-## 적용 내용
-
-| 요구사항 | 구현 |
-| --- | --- |
-| W1-1 | `app/page.js`에서 책 데이터를 Props로 전달하고, `'use client'`를 선언한 `components/BookShelf.js`에서 목록 렌더링 |
-| W1-2 | `value`, `onChange`, `useState`를 연결한 제목 검색과 `filter`, `includes` 사용 |
-| W1-3 | 전체 / 소설 / 에세이 / IT / 시 버튼과 선택 상태 강조 |
-| W1-4 | 카드의 읽음 버튼을 누르면 다 읽음 / 읽는 중 상태 전환 |
-| W1-5 | 제목과 장르 조건을 함께 적용한 결과 권수 및 0권 안내 |
-
-`BookShelf`에서 `keyword`, `genre`, `bookList`를 state로 관리합니다. 결과 목록과 통계는 현재 state로부터 계산합니다. 책 상태는 `map`과 객체 복사를 사용해 기존 배열을 직접 수정하지 않고 변경합니다.
-
-교안에서는 카드 내부의 `useState(isRead)`도 허용합니다. 이 구현은 책장으로 상태를 끌어올려 카드 버튼을 누르면 전체 독서 통계도 갱신되며, 검색이나 장르 변경 이후에도 상태를 유지합니다. 새로고침하면 원래 데이터로 돌아갑니다. 기존 도서 데이터는 유지했으며 시 장르는 등록 도서가 없어 빈 결과 안내를 확인할 수 있습니다.
-
-## 확인 방법
-
-1. 초기 화면의 전체 7권, 다 읽은 책 4권, 진행률 57%를 확인합니다.
-2. 제목에 `학습`을 입력하면 「야생 학습」 1권이 표시됩니다.
-3. 검색어를 유지한 채 소설을 선택하면 0권, IT를 선택하면 1권이 표시됩니다.
-4. 필터 초기화 후 시를 선택하면 빈 결과 안내가 표시됩니다.
-5. 「야생 학습」의 읽음 버튼을 누르면 다 읽은 책 5권, 진행률 71%가 됩니다. 탭을 바꿨다가 돌아와도 읽음 상태가 유지됩니다.
-6. 같은 버튼을 다시 누르면 읽는 중으로 돌아옵니다.
+## 프로덕션 빌드 / 실행
 
 ```bash
 npm run build
+npm run start
 ```
+
+## 사용 가능한 스크립트
+
+| 명령어 | 설명 |
+| --- | --- |
+| `npm run dev` | 개발 서버 실행 (http://localhost:3000) |
+| `npm run build` | 프로덕션 빌드 |
+| `npm run start` | 빌드된 앱 실행 |
+| `npm run lint` | ESLint 검사 |
+
+## 프로젝트 구조 (수업 시간에 추가/수정한 파일)
+
+```
+cafe-menu/
+├── app/
+│   ├── layout.js        # 전체 레이아웃 (lang="ko", 제목 "루나 카페 메뉴판")
+│   ├── page.js          # 메인 페이지: 루나 카페 제목과 오늘의 추천 메뉴 3개
+│   ├── section.js       # Section 컴포넌트: 제목(title)과 메뉴 카드 묶음(children)
+│   └── globals.css      # 전역 스타일 (카드, 메뉴 그리드 등)
+└── component/
+    └── MenuCard.js      # MenuCard 컴포넌트: 메뉴 하나를 카드로 표시
+```
+
+| 파일 | 설명 |
+| --- | --- |
+| `app/page.js` | `Section`과 `MenuCard`를 조합해 메뉴 화면을 구성 |
+| `app/section.js` | props `title`, `children`을 받아 `<h2>`와 `.menu-grid` 안에 카드를 배치 |
+| `component/MenuCard.js` | props `emoji`(기본값 ☕), `name`, `price`, `desc`를 받아 카드 출력. 가격은 `toLocaleString()`으로 천 단위 쉼표 표시 |
+| `app/layout.js` | 페이지 공통 `<html>`/`<body>`와 metadata 설정 |
+| `app/globals.css` | 전역 CSS |
+
+## 기술 스택
+
+- Next.js 16
+- React 19
